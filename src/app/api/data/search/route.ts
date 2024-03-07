@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 async function fetchCustomers() {
-  const response = await fetch("http://localhost:3000/api/data/", {
+  const response = await fetch("/api/data/", {
     method: "GET",
   });
 
