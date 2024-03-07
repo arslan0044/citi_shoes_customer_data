@@ -41,11 +41,11 @@ export default function Page() {
           </thead>
 
           {cendor.map((item) => (
-            <tbody className="text-blue-gray-900" key={item._id}>
+            <tbody className="text-blue-gray-900" key={item["_id"]}>
               <tr className="border-b border-blue-gray-200">
-                <td className="py-3 px-4">{item.name}</td>
-                <td className="py-3 px-4">{item.city}</td>
-                <td className="py-3 px-4">{item.number}</td>
+                <td className="py-3 px-4">{item["name"]}</td>
+                <td className="py-3 px-4">{item["city"]}</td>
+                <td className="py-3 px-4">{item["number"]}</td>
 
               </tr>
             </tbody>

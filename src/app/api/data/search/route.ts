@@ -12,7 +12,7 @@ async function fetchCustomers() {
 export async function GET(request: NextRequest) {
   const customers = await fetchCustomers();
   const { searchParams } = new URL(request.url);
-  const query = searchParams.get("query");
+  const query = searchParams.get("query") ;
 
   const filteredCustomers = customers.filter((data:any) => {
     // const {city, name , number, company} = a
@@ -20,9 +20,9 @@ export async function GET(request: NextRequest) {
     const company = data.number || "";
     const city = data.city || "";
     const result =
-      name.toLowerCase().includes(query.toLowerCase()) ||
-      city.toLowerCase().includes(query.toLowerCase()) ||
-      company.toLowerCase().includes(query.toLowerCase());
+      name.toLowerCase().includes(query?.toLowerCase()) ||
+      city.toLowerCase().includes(query?.toLowerCase()) ||
+      company.toLowerCase().includes(query?.toLowerCase());
     return result;
   });
 
