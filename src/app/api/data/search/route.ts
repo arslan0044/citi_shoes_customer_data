@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 async function fetchCustomers() {
-  const response = await fetch("/api/data/", {
+  const response = await fetch("https://numberdata.vercel.app/api/data/", {
     method: "GET",
   });
 
