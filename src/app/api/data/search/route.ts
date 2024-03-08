@@ -1,21 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { connect } from "../../../../dbConfig/dbConfig";
+import UDdata from "../../../../models/dataModel";
 
-async function fetchCustomers() {
-  const response = await fetch("./api/data/", {
-    method: "GET",
-  });
-
-  const customers = await response.json();
-  return customers;
-}
+connect();
 
 export async function GET(request: NextRequest) {
-  const customers = await fetchCustomers();
+  const customers = await UDdata.find();
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("query") ;
 
   const filteredCustomers = customers.filter((data:any) => {
-    // const {city, name , number, company} = a
     const name = data.name || "";
     const company = data.number || "";
     const city = data.city || "";
