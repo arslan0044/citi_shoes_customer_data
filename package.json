@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "export-from-json": "^1.7.4",
     "mongoose": "^8.2.1",
     "next": "14.1.3",
     "react": "^18",
