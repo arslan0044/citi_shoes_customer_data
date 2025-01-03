@@ -158,7 +158,7 @@ export default function Page() {
       </div>
       {loading && (
         <div className="flex justify-center w-full py-10">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-green-500"></div>
+        <span className="loader"></span>
         </div>
       )}
     </section>
