@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function SearchCustomer({
-  getSearchResults,}
-) {
+export default function SearchCustomer({ getSearchResults }) {
   const [query, setQuery] = useState("");
 
   const handleSubmit = async (e) => {
@@ -46,7 +44,7 @@ export default function SearchCustomer({
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-300 focus:border-green-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-300 dark:focus:border-green-300"
             placeholder="Search Customer by Name, City, Number, "
             value={query}
             onChange={(e) => setQuery(e.target.value)}
