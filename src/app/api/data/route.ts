@@ -7,14 +7,32 @@ import { NextResponse, NextRequest } from "next/server";
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
+
+    // Extract page, limit, and search query parameters
     const page = parseInt(searchParams.get("page") || "1", 10); // Default to page 1
     const limit = parseInt(searchParams.get("limit") || "100", 10); // Default limit to 100
+    const query = searchParams.get("query") || ""; // Search query (name, city, number)
 
     // Ensure page and limit are valid numbers
     const skip = (page - 1) * limit;
-    const total = await UDdata.countDocuments(); // Total count for pagination meta
-    const data = await UDdata.find().skip(skip).limit(limit);
 
+    // Build a dynamic query object for searching
+    const searchQuery: any = {};
+    if (query) {
+      searchQuery.$or = [
+        { name: { $regex: query, $options: "i" } },
+        { city: { $regex: query, $options: "i" } },
+        { number: { $regex: query, $options: "i" } },
+      ];
+    }
+
+    // Get the total number of matching documents for pagination
+    const total = await UDdata.countDocuments(searchQuery);
+
+    // Fetch the data based on the search query, page, and limit
+    const data = await UDdata.find(searchQuery).skip(skip).limit(limit);
+
+    // Return the response with data and pagination details
     return NextResponse.json({
       success: true,
       data,
@@ -29,6 +47,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 }
+
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
